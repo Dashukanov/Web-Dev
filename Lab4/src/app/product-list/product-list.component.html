@@ -1,0 +1,34 @@
+<h2>Products</h2>
+
+<div class="all-products">
+  <div *ngFor="let product of products" class="inner-products">
+
+    <h3>
+      <a [title]="product.name + ' details'" href="{{ product.link }}">
+        {{ product.name }}
+      </a>
+    </h3>
+
+    <img src="{{ product.image }}" width="300">
+
+    <p *ngIf="product.description">
+      Description: {{ product.description }}
+    </p>
+
+    <p *ngIf="product.description">
+      Rating: {{ product.rating }}
+    </p>
+
+    <a *ngIf="product" target= _blank href="https://telegram.me/share/url?url={{product.link}}&text={{product.name}}">
+      <button type="button" class="share-button">
+        Share
+      </button>
+    </a>
+
+    <app-product-alerts
+      [product]="product"
+      (notify)="onNotify()">
+    </app-product-alerts>
+
+  </div>
+</div>
